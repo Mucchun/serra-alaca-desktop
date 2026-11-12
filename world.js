@@ -1,6 +1,6 @@
 /* =========================================================
-   The pixel world: clouds, a cat that walks along the grass,
-   and things growing on it.
+   The desktop pet: a pixel cat that walks along the bottom of
+   the screen. Click it to pet it.
 
    Every sprite is drawn here as rows of letters. Each letter
    is one pixel, coloured by PALETTE; a dot is transparent.
@@ -12,12 +12,7 @@ const PALETTE = {
   w: "#fff7ea", // white
   p: "#f58fb0", // pink
   k: "#2b2233", // eyes
-  r: "#ef6f6c", // red
-  y: "#f7c948", // gold
-  g: "#6cc082", // leaf green
-  t: "#c97b4a", // terracotta
-  c: "#b98556", // cork
-  b: "#9db8e8" // glass blue
+  r: "#ef6f6c" // red
 };
 
 const SPRITES = {
@@ -58,41 +53,6 @@ const SPRITES = {
     "..drrrd..",
     "...drd...",
     "....d...."
-  ],
-  mushroom: [
-    "....dddd....",
-    "..ddrrrrdd..",
-    ".drwwrrrrrd.",
-    "drrwwrrrwwrd",
-    "drrrrrrrwwrd",
-    "drrrrrrrrrrd",
-    ".dddddddddd.",
-    "...dwwwwd...",
-    "...dkwwkd...",
-    "...dwwwwd...",
-    "....dddd...."
-  ],
-  plant: [
-    "...dd.....",
-    "..dggd.dd.",
-    "..dggddggd",
-    ".ddgggdggd",
-    "dggdggggd.",
-    "dgggdggd..",
-    ".dggggd...",
-    "..dddd....",
-    ".dttttttd.",
-    ".dttttttd.",
-    "..dttttd..",
-    "..dddddd.."
-  ],
-  cloud: [
-    ".....wwww.......",
-    "...wwwwwwww.....",
-    "..wwwwwwwwwwww..",
-    ".wwwwwwwwwwwwww.",
-    "wwwwwwwwwwwwwwww",
-    ".wwwwwwwwwwwwww."
   ]
 };
 
@@ -125,44 +85,14 @@ function spriteImage(name, scale, className) {
   return image;
 }
 
-const desktop = document.querySelector("#desktop");
 const ground = document.querySelector("#ground");
 const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-/* Clouds */
-
-[
-  { top: 7, scale: 7, seconds: 150, delay: -20 },
-  { top: 22, scale: 5, seconds: 110, delay: -70 },
-  { top: 46, scale: 4, seconds: 180, delay: -120 }
-].forEach((cloud) => {
-  const image = spriteImage("cloud", cloud.scale, "cloud");
-  image.style.top = `${cloud.top}%`;
-  image.style.animationDuration = `${cloud.seconds}s`;
-  image.style.animationDelay = `${cloud.delay}s`;
-  image.setAttribute("aria-hidden", "true");
-  desktop.prepend(image);
-});
-
-/* Things growing on the grass */
-
-[
-  { name: "plant", scale: 4, left: 1.5 },
-  { name: "mushroom", scale: 3, left: 57 },
-  { name: "plant", scale: 3, left: 83 },
-  { name: "mushroom", scale: 2, left: 30 }
-].forEach((thing) => {
-  const image = spriteImage(thing.name, thing.scale, "ground-thing");
-  image.style.left = `${thing.left}%`;
-  image.setAttribute("aria-hidden", "true");
-  ground.appendChild(image);
-});
 
 /* Hearts that float up when you pet something */
 
 function popHeart(actor) {
   const heart = spriteImage("heart", 3, "heart-pop");
-  heart.style.left = `${actor.offsetLeft + actor.offsetWidth / 2 - 13}px`;
+  heart.style.left = `${actor.getBoundingClientRect().left - ground.getBoundingClientRect().left + actor.offsetWidth / 2 - 13}px`;
   heart.setAttribute("aria-hidden", "true");
   ground.appendChild(heart);
   heart.addEventListener("animationend", () => heart.remove());
@@ -223,5 +153,5 @@ function makeActor({ label, frames, scale, speed, startAt, onPet }) {
   return actor;
 }
 
-makeActor({ label: "Pet the cat", frames: ["catA", "catB"], scale: 4, speed: 0.7, startAt: 0.42 });
+makeActor({ label: "Pet the cat", frames: ["catA", "catB"], scale: 3, speed: 0.6, startAt: 0.78 });
 

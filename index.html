@@ -8,15 +8,22 @@
       name="description"
       content="The desktop of Serra Alaca, a London-based game developer, designer and software engineer. Open the folders to see 3D art, code projects and experience."
     >
-    <meta name="theme-color" content="#bfe6f2">
+    <meta name="theme-color" content="#f2f7fc">
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M6 16c0-3 2-5 5-5h14l6 7h22c3 0 5 2 5 5v26c0 3-2 5-5 5H11c-3 0-5-2-5-5V16z' fill='%23e3b471'/%3E%3Cpath d='M6 24h52v25c0 3-2 5-5 5H11c-3 0-5-2-5-5V24z' fill='%23efc98f'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M6 16c0-3 2-5 5-5h14l6 7h22c3 0 5 2 5 5v26c0 3-2 5-5 5H11c-3 0-5-2-5-5V16z' fill='%2379abea'/%3E%3Cpath d='M6 24h52v25c0 3-2 5-5 5H11c-3 0-5-2-5-5V24z' fill='%239cc4f4'/%3E%3C/svg%3E"
     >
+    <script>
+      // Apply the saved wallpaper before the page paints.
+      try {
+        const sky = JSON.parse(localStorage.getItem("sa-sky"));
+        if (sky) document.documentElement.dataset.sky = sky;
+      } catch (error) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=4">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=6">
   </head>
   <body>
     <header class="menubar">
@@ -24,16 +31,21 @@
         <span class="menubar-mark" aria-hidden="true">SA</span>
         <button class="menubar-link is-strong" type="button" data-open="about">Serra Alaca</button>
         <button class="menubar-link" type="button" data-open="contact">Contact</button>
-        <button class="menubar-link" type="button" data-open="cv">CV</button>
+        <button class="menubar-link is-extra" type="button" data-open="cv">CV</button>
+        <button class="menubar-link" type="button" data-menu="view" aria-haspopup="menu" aria-expanded="false">View</button>
+        <button class="menubar-link is-extra" type="button" data-menu="window" aria-haspopup="menu" aria-expanded="false">Window</button>
       </div>
       <div class="menubar-right">
+        <button class="menubar-search" id="search-button" type="button" aria-label="Search" title="Search (press /)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.500" cy="10.500" r="6"/><path d="M15 15l5.500 5.500"/></svg>
+        </button>
         <span id="clock"></span>
       </div>
     </header>
 
     <main class="desktop" id="desktop">
       <aside class="quest-log" aria-label="Currently">
-        <strong>Currently</strong>
+        <strong>Currently:</strong>
         <ul>
           <li>Software Intern at ElCode</li>
           <li>AI Creative Technologist at Phenomena Creative Advisory</li>
@@ -43,7 +55,7 @@
       </aside>
 
       <div class="welcome">
-        <p>the portfolio of</p>
+        <p>welcome to the desktop of</p>
         <h1>Serra Alaca</h1>
         <p class="welcome-role">Game developer, designer and software engineer</p>
       </div>
@@ -60,7 +72,7 @@
         <p class="toy-hint" aria-hidden="true">drag to spin</p>
       </section>
 
-      <!-- The grass strip: world.js puts the cat and the plants here -->
+      <!-- The bottom edge of the screen: world.js puts the cat here -->
       <div class="ground" id="ground"></div>
 
       <div id="windows"></div>
@@ -74,7 +86,7 @@
       </noscript>
     </main>
 
-    <nav class="dock" id="dock" aria-label="Hotbar"></nav>
+    <nav class="dock" id="dock" aria-label="Dock"></nav>
 
     <dialog class="lightbox" id="lightbox" aria-label="Artwork viewer">
       <button class="lightbox-close" type="button">Close</button>
@@ -86,8 +98,25 @@
       </div>
     </dialog>
 
-    <script src="app.js?v=4" defer></script>
-    <script src="world.js?v=4" defer></script>
+    <dialog class="search" id="search" aria-label="Search this portfolio">
+      <input
+        type="text"
+        role="combobox"
+        aria-label="Search projects, artwork and experience"
+        aria-controls="search-results"
+        aria-expanded="true"
+        aria-autocomplete="list"
+        placeholder="Search projects, artwork, experience"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <ul class="search-results" id="search-results" role="listbox" aria-label="Results"></ul>
+      <p class="search-tip">Arrow keys to move, Enter to open, Esc to close.</p>
+    </dialog>
+
+    <script src="app.js?v=7" defer></script>
+    <script src="world.js?v=6" defer></script>
+    <script src="desktop.js?v=6" defer></script>
     <script src="toy3d.js?v=3" defer></script>
   </body>
 </html>

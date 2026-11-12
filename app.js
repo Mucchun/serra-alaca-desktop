@@ -9,8 +9,8 @@ const ART = [
   {
     id: "ephesus",
     name: "Ephesus",
-    x: 74,
-    y: 9,
+    x: 77,
+    y: 12,
     intro: "Environment piece.",
     images: [
       { src: "assets/artstation/ephesus.jpg", caption: "Ephesus", alt: "A ruined classical library facade with columns and arches, glowing orange in smoke under a large sun.", wide: true },
@@ -20,8 +20,8 @@ const ART = [
   {
     id: "character",
     name: "Character",
-    x: 88,
-    y: 21,
+    x: 89,
+    y: 25,
     intro: "Character model, from T-pose to presentation sheet.",
     images: [
       { src: "assets/artstation/character-model.webp", caption: "Character model sheet", alt: "Presentation sheet for a 3D character: front, side and back views, close-ups, and untextured and UV-checker versions.", wide: true },
@@ -32,8 +32,8 @@ const ART = [
   {
     id: "props",
     name: "Props",
-    x: 78,
-    y: 35,
+    x: 76,
+    y: 36,
     intro: "Prop and asset models.",
     images: [
       { src: "assets/artstation/sundial.jpg", caption: "Sundial", alt: "A carved stone sundial with a raised gnomon and lettered rim, shown from three angles." },
@@ -58,8 +58,7 @@ const CODE = [
   { name: "London Underground Trains Database", url: "https://github.com/Mucchun/London-Underground-Trains-Database-SQL", text: "A database project for tracking check-in and check-out data for London Underground train journeys.", tags: "SQL, database design, transport data" },
   { name: "UKHSA Influenza Data Dashboard", url: "https://github.com/Mucchun/UKSHA-Influenza-Data-Dashboard", text: "A public-health data dashboard project using UKHSA influenza API data and notebook-based analysis.", tags: "Jupyter, data dashboard, public health" },
   { name: "MoMA Artwork Department Classifier", url: "https://github.com/Mucchun/Classification-of-MoMA-Artworks-by-Department-using-Logistic-Regression-and-K-Nearest-Neighbours", text: "A data analytics project classifying MoMA artworks by department with logistic regression and K-nearest neighbours.", tags: "Jupyter, logistic regression, KNN" },
-  { name: "Serra Alaca Portfolio", url: "https://github.com/Mucchun/serra-alaca-portfolio", demo: "https://mucchun.github.io/serra-alaca-portfolio/", demoLabel: "Visit", text: "My main portfolio site, with a 3D ancient-temple scene.", tags: "JavaScript, Three.js, HTML/CSS" },
-  { name: "Mucchun.github.io", url: "https://github.com/Mucchun/Mucchun.github.io", demo: "https://mucchun.github.io/", demoLabel: "Visit", text: "Experimental website design using HTML.", tags: "HTML" }
+  { name: "Serra Alaca Portfolio", url: "https://github.com/Mucchun/serra-alaca-portfolio", demo: "https://mucchun.github.io/serra-alaca-portfolio/", demoLabel: "Visit", text: "My main portfolio site, with a 3D ancient-temple scene.", tags: "JavaScript, Three.js, HTML/CSS" }
 ];
 
 const EXPERIENCE = [
@@ -235,28 +234,30 @@ ART.forEach((folder) => {
    ========================================================= */
 
 const DESKTOP_ICONS = [
-  { open: "about", label: "About Me", kind: "folder", x: 27, y: 57 },
-  { open: "cv", label: "CV.pdf", kind: "pdf", x: 38, y: 60 },
-  { open: "experience", label: "Experience.txt", kind: "file", x: 30, y: 71 },
-  { open: "education", label: "Education.txt", kind: "file", x: 49, y: 69 },
+  { open: "cv", label: "CV.pdf", kind: "pdf", x: 5, y: 44 },
+  { open: "about", label: "About Me", kind: "folder", x: 19, y: 60 },
+  { open: "experience", label: "Experience.txt", kind: "file", x: 29, y: 73 },
+  { open: "education", label: "Education.txt", kind: "file", x: 62, y: 72 },
   ...ART.map((folder) => ({ open: folder.id, label: folder.name, kind: "folder", x: folder.x, y: folder.y })),
-  { open: "code", label: "Code projects", kind: "folder", x: 66, y: 60 }
+  { open: "code", label: "Code projects", kind: "folder", x: 74, y: 58 },
+  { open: "terminal", label: "Terminal", kind: "terminal", x: 88, y: 70 }
 ];
 
 const DOCK = [
-  { open: "about", label: "About me", glyph: "person", color: "#e3b471" },
-  { open: "art", label: "Art and 3D", glyph: "image", color: "#86d7d2" },
-  { open: "code", label: "Code projects", glyph: "code", color: "#9db8e8" },
-  { open: "experience", label: "Experience", glyph: "list", color: "#f0a98a" },
-  { open: "contact", label: "Contact", glyph: "mail", color: "#c5b3ea" },
-  { open: "cv", label: "CV", glyph: "pdf", color: "#fbfaf6" }
+  { open: "about", label: "About me", glyph: "person", color: "#7ea9f2" },
+  { open: "art", label: "Art and 3D", glyph: "image", color: "#f4b45f" },
+  { open: "code", label: "Code projects", glyph: "code", color: "#6ccb97" },
+  { open: "experience", label: "Experience", glyph: "list", color: "#b49bf0" },
+  { open: "contact", label: "Contact", glyph: "mail", color: "#f08fa8" },
+  { open: "cv", label: "CV", glyph: "pdf", color: "#ffffff" }
 ];
 
 function iconSvg(kind) {
   const icons = {
-    folder: `<svg viewBox="0 0 16 13" shape-rendering="crispEdges" aria-hidden="true"><path d="M1 0h5v1h1v1h8v1h1v9h-1v1H1v-1H0V1h1z" fill="#2b2233"/><path d="M1 1h5v1h1v1h8v1H1z" fill="#d9903d"/><path d="M1 4h14v8H1z" fill="#f7c35f"/><path d="M1 4h14v1H1z" fill="#ffe09a"/><path d="M1 11h14v1H1z" fill="#e0a13f"/></svg>`,
+    folder: `<svg viewBox="0 0 64 54" aria-hidden="true"><path class="folder-back" d="M4 10a5 5 0 0 1 5-5h14.500a5 5 0 0 1 3.800 1.700L31 11h24a5 5 0 0 1 5 5v8H4z"/><path class="folder-front" d="M4 18h56v27a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/></svg>`,
     file: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 4h26l12 12v40a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#fbfaf6" stroke="#b9c7cc" stroke-width="2"/><path d="M40 4v12h12" fill="#e6eef0" stroke="#b9c7cc" stroke-width="2"/><path d="M19 30h26M19 38h26M19 46h17" stroke="#9fb0b6" stroke-width="2.5" stroke-linecap="round"/></svg>`,
     pdf: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 4h26l12 12v40a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#fbfaf6" stroke="#b9c7cc" stroke-width="2"/><path d="M40 4v12h12" fill="#e6eef0" stroke="#b9c7cc" stroke-width="2"/><text x="31" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#c0563f">PDF</text></svg>`,
+    terminal: `<svg viewBox="0 0 64 54" aria-hidden="true"><rect x="7" y="4" width="50" height="46" rx="9" fill="#262a38"/><path d="M19 20l9 7-9 7" fill="none" stroke="#9cc4f4" stroke-width="3.500" stroke-linecap="round" stroke-linejoin="round"/><path d="M33 35h12" stroke="#fff" stroke-width="3.500" stroke-linecap="round"/></svg>`,
     person: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.7"/><path d="M4.5 20c.6-4 3.6-6.2 7.5-6.200s6.9 2.2 7.5 6.2"/></svg>`,
     image: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4.5 3.5 3 3-2.5 4.5 4"/></svg>`,
     code: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7.500L4 12l4.5 4.500M15.5 7.500L20 12l-4.5 4.500M13.2 5.500l-2.4 13"/></svg>`,
@@ -296,8 +297,27 @@ function focusWindow(win) {
   syncDock();
 }
 
+// Open windows that aren't minimised, back to front.
+function visibleWindows() {
+  return [...openWindows.values()].filter((entry) => !entry.win.hidden).sort((one, two) => one.win.style.zIndex - two.win.style.zIndex);
+}
+
+function focusTopWindow() {
+  const top = visibleWindows().pop();
+  if (top) {
+    focusWindow(top.win);
+  } else {
+    windowsRoot.querySelectorAll(".window").forEach((win) => win.classList.remove("is-front"));
+    syncDock();
+  }
+}
+
 function syncDock() {
-  dockRoot.querySelectorAll(".dock-app").forEach((app) => app.classList.toggle("is-open", openWindows.has(app.dataset.open)));
+  dockRoot.querySelectorAll(".dock-app").forEach((app) => {
+    const entry = openWindows.get(app.dataset.open);
+    app.classList.toggle("is-open", Boolean(entry));
+    app.classList.toggle("is-minimised", Boolean(entry && entry.win.hidden));
+  });
 }
 
 function closeWindow(id) {
@@ -305,9 +325,30 @@ function closeWindow(id) {
   if (!entry) return;
   entry.win.remove();
   openWindows.delete(id);
-  syncDock();
+  focusTopWindow();
   if (entry.opener && document.contains(entry.opener)) entry.opener.focus();
   if (location.hash === `#${id}`) history.replaceState(null, "", location.pathname + location.search);
+}
+
+function closeAllWindows() {
+  [...openWindows.keys()].forEach((id) => closeWindow(id));
+}
+
+// Minimised windows stay open (the dock and the Window menu bring them back).
+function minimiseWindow(id) {
+  const entry = openWindows.get(id);
+  if (!entry) return;
+  entry.win.hidden = true;
+  focusTopWindow();
+  if (entry.opener && document.contains(entry.opener)) entry.opener.focus();
+}
+
+function toggleMaximise(id) {
+  const entry = openWindows.get(id);
+  if (!entry || isCompact()) return;
+  const isMax = entry.win.classList.toggle("is-max");
+  const button = entry.win.querySelector(".window-max");
+  button.setAttribute("aria-label", `${isMax ? "Restore" : "Maximise"} ${WINDOWS[id].title}`);
 }
 
 function openWindow(id, opener) {
@@ -316,6 +357,7 @@ function openWindow(id, opener) {
 
   if (openWindows.has(id)) {
     const existing = openWindows.get(id).win;
+    existing.hidden = false;
     focusWindow(existing);
     existing.focus();
     return;
@@ -328,7 +370,11 @@ function openWindow(id, opener) {
   win.tabIndex = -1;
   win.innerHTML = `
     <header class="window-bar">
-      <button class="window-close" type="button" aria-label="Close ${config.title}"></button>
+      <div class="window-tools">
+        <button class="window-close" type="button" aria-label="Close ${config.title}"></button>
+        <button class="window-min" type="button" aria-label="Minimise ${config.title}"></button>
+        <button class="window-max" type="button" aria-label="Maximise ${config.title}"></button>
+      </div>
       <span class="window-title">${config.title}</span>
     </header>
     <div class="window-body">${config.html()}</div>`;
@@ -337,27 +383,33 @@ function openWindow(id, opener) {
   // Each new window opens a little down and right of the last, like a real desktop.
   if (!isCompact()) {
     const step = (openCount % 6) * 26;
-    // Keep clear of the hotbar on the left.
-    const left = Math.max(96, (stage.clientWidth - win.offsetWidth) / 2 - 40 + step);
-    const top = Math.max(14, (stage.clientHeight - win.offsetHeight) / 2 - 50 + step);
-    win.style.left = `${Math.min(left, Math.max(96, stage.clientWidth - win.offsetWidth - 12))}px`;
+    const left = Math.max(12, (stage.clientWidth - win.offsetWidth) / 2 - 50 + step);
+    // Sit a little above centre, clear of the dock.
+    const top = Math.max(12, (stage.clientHeight - 90 - win.offsetHeight) / 2 - 30 + step);
+    win.style.left = `${Math.min(left, Math.max(12, stage.clientWidth - win.offsetWidth - 12))}px`;
     win.style.top = `${top}px`;
   }
   openCount += 1;
 
-  openWindows.set(id, { win, opener });
+  openWindows.set(id, { id, win, opener });
   win.addEventListener("pointerdown", () => focusWindow(win));
   win.querySelector(".window-close").addEventListener("click", () => closeWindow(id));
+  win.querySelector(".window-min").addEventListener("click", () => minimiseWindow(id));
+  win.querySelector(".window-max").addEventListener("click", () => toggleMaximise(id));
+  win.querySelector(".window-bar").addEventListener("dblclick", (event) => {
+    if (!event.target.closest("button")) toggleMaximise(id);
+  });
   enableDrag(win);
   focusWindow(win);
   win.focus();
+  if (config.onOpen) config.onOpen(win);
   history.replaceState(null, "", `#${id}`);
 }
 
 function enableDrag(win) {
   const bar = win.querySelector(".window-bar");
   bar.addEventListener("pointerdown", (event) => {
-    if (isCompact() || event.target.closest("button")) return;
+    if (isCompact() || win.classList.contains("is-max") || event.target.closest("button")) return;
     event.preventDefault();
     const startX = event.clientX - win.offsetLeft;
     const startY = event.clientY - win.offsetTop;
@@ -387,26 +439,21 @@ document.addEventListener("click", (event) => {
   if (trigger) openWindow(trigger.dataset.open, trigger);
 });
 
-// Keys 1 to 6 open the hotbar slots, like a game inventory.
+const dialogIsOpen = () => Boolean(document.querySelector("dialog[open]"));
+
+// Keys 1 to 6 open the dock apps.
 document.addEventListener("keydown", (event) => {
-  if (event.metaKey || event.ctrlKey || event.altKey || lightbox.open) return;
+  if (event.metaKey || event.ctrlKey || event.altKey || dialogIsOpen()) return;
   if (event.target.closest("input, textarea, select")) return;
   const slot = DOCK[Number(event.key) - 1];
   if (slot) openWindow(slot.open, dockRoot.children[Number(event.key) - 1]);
 });
 
+// Escape closes the window in front.
 document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape" || lightbox.open) return;
-  const front = windowsRoot.querySelector(".window.is-front") || windowsRoot.lastElementChild;
-  if (!front) return;
-  for (const [id, entry] of openWindows) {
-    if (entry.win === front) {
-      closeWindow(id);
-      const next = windowsRoot.lastElementChild;
-      if (next) focusWindow(next);
-      break;
-    }
-  }
+  if (event.key !== "Escape" || dialogIsOpen()) return;
+  const front = visibleWindows().pop();
+  if (front) closeWindow(front.id);
 });
 
 /* =========================================================
@@ -464,5 +511,8 @@ function tick() {
 tick();
 setInterval(tick, 20000);
 
-const startId = location.hash.slice(1);
-if (WINDOWS[startId]) openWindow(startId, null);
+// Runs once every script has loaded, so windows added by desktop.js open too.
+document.addEventListener("DOMContentLoaded", () => {
+  const startId = location.hash.slice(1);
+  if (WINDOWS[startId]) openWindow(startId, null);
+});
