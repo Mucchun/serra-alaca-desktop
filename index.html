@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Serra Alaca | Desktop Portfolio</title>
+    <meta
+      name="description"
+      content="The desktop of Serra Alaca, a London-based game developer, designer and software engineer. Open the folders to see 3D art, code projects and experience."
+    >
+    <meta name="theme-color" content="#bfe6f2">
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M6 16c0-3 2-5 5-5h14l6 7h22c3 0 5 2 5 5v26c0 3-2 5-5 5H11c-3 0-5-2-5-5V16z' fill='%23e3b471'/%3E%3Cpath d='M6 24h52v25c0 3-2 5-5 5H11c-3 0-5-2-5-5V24z' fill='%23efc98f'/%3E%3C/svg%3E"
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3">
+  </head>
+  <body>
+    <header class="menubar">
+      <div class="menubar-left">
+        <span class="menubar-mark" aria-hidden="true">SA</span>
+        <button class="menubar-link is-strong" type="button" data-open="about">Serra Alaca</button>
+        <button class="menubar-link" type="button" data-open="contact">Contact</button>
+        <button class="menubar-link" type="button" data-open="cv">CV</button>
+      </div>
+      <div class="menubar-right">
+        <span id="clock"></span>
+      </div>
+    </header>
+
+    <main class="desktop" id="desktop">
+      <aside class="quest-log" aria-label="Quest log">
+        <strong>Quest log</strong>
+        <ul>
+          <li>Build worlds people want to stay in</li>
+          <li class="is-done">Model something every week</li>
+          <li>Finish the next environment</li>
+          <li>Hit the bullseye at archery</li>
+          <li class="is-done">Drink water</li>
+          <li>Build my dream portfolio</li>
+        </ul>
+      </aside>
+
+      <div class="welcome">
+        <p>welcome to the desktop of</p>
+        <h1>Serra Alaca</h1>
+        <p class="welcome-role">Game developer, designer and software engineer</p>
+      </div>
+
+      <!-- Desktop icons and windows are built from the data in app.js -->
+      <div class="icons" id="icons"></div>
+
+      <section class="toy" id="toy" aria-label="3D desk toy">
+        <canvas id="toy-canvas" tabindex="0" aria-label="3D model. Drag it, or use the arrow keys, to spin it."></canvas>
+        <div class="toy-bar">
+          <span id="toy-name"></span>
+          <button id="toy-next" type="button">Next</button>
+        </div>
+        <p class="toy-hint" aria-hidden="true">drag to spin</p>
+      </section>
+
+      <!-- The grass strip: world.js puts the cat, the slime and the plants here -->
+      <div class="ground" id="ground"></div>
+
+      <div id="windows"></div>
+
+      <noscript>
+        <p class="noscript">
+          This portfolio needs JavaScript to open its folders. You can still reach me at
+          <a href="mailto:alaca.serra@gmail.com">alaca.serra@gmail.com</a> or
+          <a href="assets/Serra-Alaca-CV.pdf">download my CV</a>.
+        </p>
+      </noscript>
+    </main>
+
+    <nav class="dock" id="dock" aria-label="Hotbar"></nav>
+
+    <dialog class="lightbox" id="lightbox" aria-label="Artwork viewer">
+      <button class="lightbox-close" type="button">Close</button>
+      <img src="" alt="">
+      <div class="lightbox-bar">
+        <button class="lightbox-prev" type="button">Previous</button>
+        <p class="lightbox-caption" aria-live="polite"></p>
+        <button class="lightbox-next" type="button">Next</button>
+      </div>
+    </dialog>
+
+    <script src="app.js?v=3" defer></script>
+    <script src="world.js?v=3" defer></script>
+    <script src="toy3d.js?v=2" defer></script>
+  </body>
+</html>
