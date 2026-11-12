@@ -2,11 +2,22 @@
   color-scheme: light;
   --bg: #f2f7fc;
   --grid: #d9e7f3;
+  /* Plaid wallpaper: pastel pink and sage. One set of stripes, laid across and down. */
+  --plaid-pink: rgba(240, 160, 185, 0.2);
+  --plaid-sage: rgba(170, 196, 120, 0.24);
+  --plaid: transparent 0 8px, var(--plaid-pink) 8px 44px, transparent 44px 48px, var(--plaid-pink) 48px 54px,
+    transparent 54px 62px, var(--plaid-sage) 62px 98px, transparent 98px 102px, var(--plaid-sage) 102px 108px,
+    transparent 108px 113px, var(--plaid-pink) 113px 115px, transparent 115px 120px;
+  --plaid-paper: repeating-linear-gradient(0deg, var(--plaid)), repeating-linear-gradient(90deg, var(--plaid));
+  /* Day, sunset and night use squared paper */
+  --grid-paper: linear-gradient(var(--grid) 1px, transparent 1px) 0 -1px / 28px 28px,
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) -1px 0 / 28px 28px;
   --ink: #22252e;
   --soft: #474c5a;
   --muted: #7a8090;
   --paper: #ffffff;
   --line: #e7eaf0;
+  --wallpaper: var(--grid-paper);
   --accent: #3767d6;
   --accent-soft: #e2ebfc;
   --folder: #9cc4f4;
@@ -14,7 +25,7 @@
   --note: #fff3a6;
   /* Text that sits straight on the wallpaper */
   --desk-ink: var(--ink);
-  --desk-muted: #5b6272;
+  --desk-muted: #4f5564;
   --display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -24,6 +35,15 @@
 }
 
 /* Wallpapers (View menu, right-click, or the terminal) */
+
+:root[data-sky="plaid"] {
+  --bg: #fffdfb;
+  --wallpaper: var(--plaid-paper);
+  --accent: #b5446c;
+  --accent-soft: #fbe3eb;
+  --folder: #f6d488;
+  --folder-dark: #ecbd5e;
+}
 
 :root[data-sky="sunset"] {
   --bg: #fff5ee;
@@ -37,6 +57,7 @@
 :root[data-sky="night"] {
   --bg: #1b1f2e;
   --grid: #2a3046;
+  --accent: #5b86e5;
   --desk-ink: #eef1f8;
   --desk-muted: #aab2c8;
 }
@@ -53,10 +74,7 @@ body {
 body {
   margin: 0;
   overflow: hidden;
-  background:
-    linear-gradient(var(--grid) 1px, transparent 1px) 0 -1px / 28px 28px,
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px) -1px 0 / 28px 28px,
-    var(--bg);
+  background: var(--wallpaper), var(--bg);
   color: var(--ink);
   font-family: var(--ui);
   font-size: 15px;
@@ -1476,4 +1494,16 @@ img {
 :root[data-sky="night"] .menubar,
 :root[data-sky="night"] .dock {
   background: rgba(255, 255, 255, 0.92);
+}
+
+/* A soft halo so labels stay readable over the patterned wallpaper */
+.icons .icon span,
+.welcome p,
+.toy-hint {
+  text-shadow: 0 0 5px var(--bg), 0 0 5px var(--bg), 0 0 2px var(--bg);
+}
+
+.icons .icon:hover span,
+.icons .icon:focus-visible span {
+  text-shadow: none;
 }

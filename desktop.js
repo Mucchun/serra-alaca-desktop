@@ -1,7 +1,7 @@
 /* =========================================================
    Desktop extras, on top of the window manager in app.js:
    - View and Window menus, and a right-click menu
-   - wallpapers (day, sunset, night)
+   - wallpapers (day, plaid, sunset, night)
    - desktop icons you can drag around
    - search (Ctrl or Cmd + K, or the / key)
    - a small terminal
@@ -37,6 +37,7 @@ stage.addEventListener("scroll", () => {
 
 const WALLPAPERS = [
   { id: "day", label: "Day" },
+  { id: "plaid", label: "Plaid" },
   { id: "sunset", label: "Sunset" },
   { id: "night", label: "Night" }
 ];
@@ -489,10 +490,10 @@ function startTerminal(win) {
         ["ls", "list the windows you can open"],
         ["open <name>", "open a window, for example: open art"],
         ["cv", "open my CV"],
-        ["wallpaper <day|sunset|night>", "change the wallpaper"],
+        ["wallpaper <day|plaid|sunset|night>", "change the wallpaper"],
         ["date", "today's date and time"],
         ["clear", "clear the screen"]
-      ].forEach(([name, what]) => print(`${name.padEnd(30)}${what}`));
+      ].forEach(([name, what]) => print(`${name.padEnd(38)}${what}`));
     },
     about: () => {
       print("Serra Alaca", "is-strong");
@@ -538,7 +539,7 @@ function startTerminal(win) {
     },
     wallpaper: (rest) => {
       if (setWallpaper(rest.toLowerCase())) print(`Wallpaper set to ${rest.toLowerCase()}.`);
-      else print("Choose one of: day, sunset, night. For example: wallpaper night", "is-error");
+      else print("Choose one of: day, plaid, sunset, night. For example: wallpaper night", "is-error");
     },
     date: () => print(new Date().toLocaleString("en-GB", { dateStyle: "full", timeStyle: "short" })),
     clear: () => {
