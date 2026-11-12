@@ -1,6 +1,6 @@
 /* =========================================================
-   The pixel world: clouds, a cat and a slime that walk along
-   the grass, things growing on it, and stickers you can drag.
+   The pixel world: clouds, a cat that walks along the grass,
+   and things growing on it.
 
    Every sprite is drawn here as rows of letters. Each letter
    is one pixel, coloured by PALETTE; a dot is transparent.
@@ -12,7 +12,6 @@ const PALETTE = {
   w: "#fff7ea", // white
   p: "#f58fb0", // pink
   k: "#2b2233", // eyes
-  s: "#7fd6cf", // slime teal
   r: "#ef6f6c", // red
   y: "#f7c948", // gold
   g: "#6cc082", // leaf green
@@ -50,18 +49,6 @@ const SPRITES = {
     ".dwwd.......dwwd",
     ".dddd.......dddd"
   ],
-  slime: [
-    "....dddd....",
-    "..ddssssdd..",
-    ".dsswssssssd",
-    ".dswsssssssd",
-    "dssksssskssd",
-    "dssssssssssd",
-    "dssssddssssd",
-    "dssssssssssd",
-    ".dssssssssd.",
-    "..dddddddd.."
-  ],
   heart: [
     ".dd...dd.",
     "drrd.drrd",
@@ -71,32 +58,6 @@ const SPRITES = {
     "..drrrd..",
     "...drd...",
     "....d...."
-  ],
-  star: [
-    ".....d.....",
-    "....dyd....",
-    "....dyd....",
-    "ddddyyydddd",
-    "dyywyyyyyyd",
-    ".dyyyyyyyd.",
-    "..dyyyyyd..",
-    "..dyyyyyd..",
-    ".dyyydyyyd.",
-    ".dyyd.dyyd.",
-    ".ddd...ddd."
-  ],
-  potion: [
-    "...dddd...",
-    "...dccd...",
-    "...dccd...",
-    "...dbbd...",
-    "..dbbbbd..",
-    ".dbbwbbbd.",
-    "dppppppppd",
-    "dpwppppppd",
-    "dppppppppd",
-    ".dppppppd.",
-    "..dddddd.."
   ],
   mushroom: [
     "....dddd....",
@@ -207,7 +168,7 @@ function popHeart(actor) {
   heart.addEventListener("animationend", () => heart.remove());
 }
 
-/* The cat and the slime */
+/* The cat */
 
 function makeActor({ label, frames, scale, speed, startAt, onPet }) {
   const urls = frames.map((name) => spriteUrl(name));
@@ -264,60 +225,3 @@ function makeActor({ label, frames, scale, speed, startAt, onPet }) {
 
 makeActor({ label: "Pet the cat", frames: ["catA", "catB"], scale: 4, speed: 0.7, startAt: 0.42 });
 
-let slimeHue = 0;
-const slime = makeActor({
-  label: "Poke the slime",
-  frames: ["slime"],
-  scale: 4,
-  speed: 0.32,
-  startAt: 0.72,
-  onPet: (actor, image) => {
-    // Each poke changes the slime's colour.
-    slimeHue = (slimeHue + 55) % 360;
-    image.style.filter = `hue-rotate(${slimeHue}deg)`;
-  }
-});
-slime.classList.add("is-slime");
-
-/* Stickers: drag them anywhere on the desktop */
-
-[
-  { name: "star", scale: 4, x: 47, y: 9 },
-  { name: "potion", scale: 4, x: 58, y: 15 },
-  { name: "heart", scale: 4, x: 34, y: 19 },
-  { name: "star", scale: 3, x: 58, y: 73 }
-].forEach((item, index) => {
-  const sticker = document.createElement("div");
-  sticker.className = "sticker";
-  sticker.style.left = `${item.x}%`;
-  sticker.style.top = `${item.y}%`;
-  sticker.style.setProperty("--tilt", `${(index % 2 ? 1 : -1) * (6 + index * 3)}deg`);
-  sticker.setAttribute("aria-hidden", "true");
-  sticker.appendChild(spriteImage(item.name, item.scale));
-  desktop.appendChild(sticker);
-
-  sticker.addEventListener("pointerdown", (event) => {
-    event.preventDefault();
-    const box = desktop.getBoundingClientRect();
-    const offsetX = event.clientX - sticker.offsetLeft;
-    const offsetY = event.clientY - sticker.offsetTop;
-    sticker.classList.add("is-held");
-
-    // Listen on the window object: iOS drops pointermove on the element mid-drag.
-    function move(moveEvent) {
-      const x = Math.min(box.width - sticker.offsetWidth, Math.max(0, moveEvent.clientX - offsetX));
-      const y = Math.min(box.height - sticker.offsetHeight, Math.max(0, moveEvent.clientY - offsetY));
-      sticker.style.left = `${x}px`;
-      sticker.style.top = `${y}px`;
-    }
-    function drop() {
-      sticker.classList.remove("is-held");
-      window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointerup", drop);
-      window.removeEventListener("pointercancel", drop);
-    }
-    window.addEventListener("pointermove", move);
-    window.addEventListener("pointerup", drop);
-    window.addEventListener("pointercancel", drop);
-  });
-});

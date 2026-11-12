@@ -227,22 +227,12 @@ img {
 
 .quest-log li::before {
   position: absolute;
-  top: 0.22em;
-  left: 0;
-  width: 12px;
-  height: 12px;
-  border: 2px solid var(--ink);
-  background: var(--paper);
+  top: 0.42em;
+  left: 2px;
+  width: 7px;
+  height: 7px;
+  background: var(--ink);
   content: "";
-}
-
-.quest-log li.is-done {
-  color: var(--muted);
-  text-decoration: line-through;
-}
-
-.quest-log li.is-done::before {
-  background: var(--grass-dark);
 }
 
 /* Icons */
@@ -295,28 +285,6 @@ img {
   grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
   gap: 8px;
   justify-items: center;
-}
-
-/* Stickers */
-
-.sticker {
-  position: absolute;
-  z-index: 3;
-  cursor: grab;
-  touch-action: none;
-  transform: rotate(var(--tilt));
-  transition: transform 120ms steps(2);
-}
-
-.sticker:hover {
-  transform: rotate(0deg) scale(1.12);
-}
-
-.sticker.is-held {
-  z-index: 6;
-  cursor: grabbing;
-  filter: drop-shadow(4px 6px 0 rgba(43, 34, 51, 0.25));
-  transform: rotate(0deg) scale(1.2);
 }
 
 /* 3D desk toy */
@@ -422,17 +390,6 @@ img {
 
 .actor img {
   transform-origin: center;
-}
-
-.actor.is-slime img {
-  animation: squish 700ms steps(4) infinite;
-  transform-origin: bottom;
-}
-
-@keyframes squish {
-  50% {
-    scale: 1.08 0.86;
-  }
 }
 
 .actor.is-petted {
@@ -790,11 +747,6 @@ img {
 
 .code-list,
 .contact-list,
-.trash-list {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
 
 .code-list li {
   padding: 14px 0;
@@ -921,13 +873,6 @@ img {
 .contact-list strong {
   overflow-wrap: anywhere;
   font-weight: 600;
-}
-
-.trash-list {
-  color: var(--soft);
-  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
-  font-size: 13px;
-  line-height: 2;
 }
 
 .noscript {
@@ -1076,10 +1021,6 @@ img {
     position: static;
     width: 100%;
     max-width: 120px;
-  }
-
-  .sticker {
-    display: none;
   }
 
   .toy {

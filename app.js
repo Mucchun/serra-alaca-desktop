@@ -30,20 +30,10 @@ const ART = [
     ]
   },
   {
-    id: "tartarus",
-    name: "To Tartarus",
-    x: 79,
-    y: 36,
-    intro: "Illustration.",
-    images: [
-      { src: "assets/artstation/to-tartarus.jpg", caption: "To Tartarus", alt: "Illustrated title art in electric blue: a figure holding a glowing light in a cave of blue flames, with a dark castle behind.", wide: true }
-    ]
-  },
-  {
     id: "props",
     name: "Props",
-    x: 88,
-    y: 49,
+    x: 78,
+    y: 35,
     intro: "Prop and asset models.",
     images: [
       { src: "assets/artstation/sundial.jpg", caption: "Sundial", alt: "A carved stone sundial with a raised gnomon and lettered rim, shown from three angles." },
@@ -203,7 +193,7 @@ const WINDOWS = {
     title: "Contact",
     size: "small",
     html: () => `<div class="pad">
-      <h2>Say hello</h2>
+      <h2>Get in touch</h2>
       <p>Open to game development, technical art, and interactive design opportunities.</p>
       <ul class="contact-list">${CONTACT.map(
         (item) => `<li><a href="${item.url}" ${item.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}><span>${item.label}</span><strong>${item.text}</strong></a></li>`
@@ -219,20 +209,6 @@ const WINDOWS = {
         <a class="button is-primary" href="${CV_FILE}" target="_blank" rel="noopener">Open CV</a>
         <a class="button" href="${CV_FILE}" download="Serra-Alaca-CV.pdf">Download CV</a>
       </div></div>`
-  },
-  trash: {
-    title: "Trash",
-    size: "small",
-    html: () => `<div class="pad">
-      <p>You weren't supposed to look in here.</p>
-      <ul class="trash-list">
-        <li>level_01_final.umap</li>
-        <li>level_01_final_v2.umap</li>
-        <li>level_01_final_v2_ACTUALLY_final.umap</li>
-        <li>character_no_topology_issues_i_promise.ma</li>
-        <li>why_is_it_pink.material</li>
-        <li>sleep_schedule.txt</li>
-      </ul></div>`
   }
 };
 
@@ -264,8 +240,7 @@ const DESKTOP_ICONS = [
   { open: "experience", label: "Experience.txt", kind: "file", x: 30, y: 71 },
   { open: "education", label: "Education.txt", kind: "file", x: 49, y: 69 },
   ...ART.map((folder) => ({ open: folder.id, label: folder.name, kind: "folder", x: folder.x, y: folder.y })),
-  { open: "code", label: "Code projects", kind: "folder", x: 66, y: 60 },
-  { open: "trash", label: "Don't look", kind: "trash", x: 90, y: 68 }
+  { open: "code", label: "Code projects", kind: "folder", x: 66, y: 60 }
 ];
 
 const DOCK = [
@@ -282,7 +257,6 @@ function iconSvg(kind) {
     folder: `<svg viewBox="0 0 16 13" shape-rendering="crispEdges" aria-hidden="true"><path d="M1 0h5v1h1v1h8v1h1v9h-1v1H1v-1H0V1h1z" fill="#2b2233"/><path d="M1 1h5v1h1v1h8v1H1z" fill="#d9903d"/><path d="M1 4h14v8H1z" fill="#f7c35f"/><path d="M1 4h14v1H1z" fill="#ffe09a"/><path d="M1 11h14v1H1z" fill="#e0a13f"/></svg>`,
     file: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 4h26l12 12v40a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#fbfaf6" stroke="#b9c7cc" stroke-width="2"/><path d="M40 4v12h12" fill="#e6eef0" stroke="#b9c7cc" stroke-width="2"/><path d="M19 30h26M19 38h26M19 46h17" stroke="#9fb0b6" stroke-width="2.5" stroke-linecap="round"/></svg>`,
     pdf: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 4h26l12 12v40a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#fbfaf6" stroke="#b9c7cc" stroke-width="2"/><path d="M40 4v12h12" fill="#e6eef0" stroke="#b9c7cc" stroke-width="2"/><text x="31" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#c0563f">PDF</text></svg>`,
-    trash: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16 18h32l-3 38a4 4 0 0 1-4 4H23a4 4 0 0 1-4-4l-3-38z" fill="#dfe8ea" stroke="#9fb0b6" stroke-width="2"/><path d="M12 18h40M26 12h12" stroke="#9fb0b6" stroke-width="3" stroke-linecap="round"/><path d="M26 27v24M32 27v24M38 27v24" stroke="#9fb0b6" stroke-width="2" stroke-linecap="round"/></svg>`,
     person: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8.5" r="3.7"/><path d="M4.5 20c.6-4 3.6-6.2 7.5-6.200s6.9 2.2 7.5 6.2"/></svg>`,
     image: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4.5 3.5 3 3-2.5 4.5 4"/></svg>`,
     code: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 7.500L4 12l4.5 4.500M15.5 7.500L20 12l-4.5 4.500M13.2 5.500l-2.4 13"/></svg>`,

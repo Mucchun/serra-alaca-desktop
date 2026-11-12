@@ -104,7 +104,7 @@ async function startToy() {
 
   const models = [
     { name: "Temple island", object: makeTemple() },
-    { name: "Lucky D20", object: makeDie() },
+    { name: "D20", object: makeDie() },
     { name: "Crystal", object: makeCrystal() }
   ];
 
