@@ -226,6 +226,7 @@ placeIcons(recall("sa-icons-2"));
 iconButtons.forEach((button) => {
   button.addEventListener("pointerdown", (event) => {
     if (isCompact() || event.button !== 0) return;
+    if (button.tagName === "A") event.preventDefault(); // stop the browser's own link drag
     const startX = event.clientX;
     const startY = event.clientY;
     const offsetX = event.clientX - button.offsetLeft;
@@ -251,7 +252,10 @@ iconButtons.forEach((button) => {
       if (!dragging) return;
       button.classList.remove("is-dragging");
       // Swallow the click that follows the drop, so the icon doesn't also open.
-      const swallow = (clickEvent) => clickEvent.stopPropagation();
+      const swallow = (clickEvent) => {
+        clickEvent.stopPropagation();
+        clickEvent.preventDefault(); // a dragged link icon shouldn't open either
+      };
       window.addEventListener("click", swallow, { capture: true, once: true });
       setTimeout(() => {
         window.removeEventListener("click", swallow, { capture: true });
@@ -300,6 +304,8 @@ const SEARCH_INDEX = [
     words: id,
     go: () => openWindow(id, null)
   })),
+  { kind: "Link", title: "ArtStation", words: "art 3d environment character props models", go: () => window.open(ARTSTATION, "_blank", "noopener") },
+  { kind: "Link", title: "GitHub", words: "code repositories source mucchun", go: () => window.open(GITHUB, "_blank", "noopener") },
   ...ART.flatMap((folder) => [
     { kind: "Art folder", title: folder.name, words: folder.intro, go: () => openWindow(folder.id, null) },
     ...folder.images.map((image) => ({

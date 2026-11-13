@@ -1,48 +1,16 @@
 /* =========================================================
    EDIT YOUR CONTENT HERE
-   - ART: each entry becomes a folder on the desktop.
+   - ART: each entry becomes a folder on the desktop (empty for now).
    - CODE, EXPERIENCE, EDUCATION: lists shown inside windows.
    - x / y are the icon's position on the desktop, in percent.
    ========================================================= */
 
-const ART = [
-  {
-    id: "ephesus",
-    name: "Ephesus",
-    x: 77,
-    y: 12,
-    intro: "Environment piece.",
-    images: [
-      { src: "assets/artstation/ephesus.jpg", caption: "Ephesus", alt: "A ruined classical library facade with columns and arches, glowing orange in smoke under a large sun.", wide: true },
-      { src: "assets/artstation/ephesus-alt.jpg", caption: "Ephesus, alternate shot", alt: "The same ruined facade seen straight on through thick orange smoke.", wide: true }
-    ]
-  },
-  {
-    id: "character",
-    name: "Character",
-    x: 89,
-    y: 25,
-    intro: "Character model, from T-pose to presentation sheet.",
-    images: [
-      { src: "assets/artstation/character-model.webp", caption: "Character model sheet", alt: "Presentation sheet for a 3D character: front, side and back views, close-ups, and untextured and UV-checker versions.", wide: true },
-      { src: "assets/artstation/character-detail.webp", caption: "T-pose", alt: "A 3D character model in T-pose wearing a white shirt, brown waistcoat and belt holsters." },
-      { src: "assets/artstation/aether.jpg", caption: "Aether", alt: "The same character standing against a field of blue stars." }
-    ]
-  },
-  {
-    id: "props",
-    name: "Props",
-    x: 76,
-    y: 36,
-    intro: "Prop and asset models.",
-    images: [
-      { src: "assets/artstation/sundial.jpg", caption: "Sundial", alt: "A carved stone sundial with a raised gnomon and lettered rim, shown from three angles." },
-      { src: "assets/artstation/sundial-closeup.webp", caption: "Sundial, close-up", alt: "Top-down close-up of the carved sundial face." },
-      { src: "assets/artstation/steampunk-device.webp", caption: "Steampunk device", alt: "A steampunk case with a clock face, brass dials and a numbered keypad, shown from three angles." },
-      { src: "assets/artstation/magical-tree.webp", caption: "Magical tree", alt: "A sculpted tree with a thick twisted trunk and golden foliage, shown from three angles." }
-    ]
-  }
-];
+// Art lives on ArtStation now. Add entries here to bring folders back to the desktop:
+// { id, name, x, y, intro, images: [{ src, caption, alt, wide }] }
+const ART = [];
+
+const ARTSTATION = "https://serraalaca6.artstation.com";
+const GITHUB = "https://github.com/Mucchun";
 
 const CODE = [
   { name: "Apex Rivals GP", url: "https://github.com/Mucchun/apex-rivals-gp", demo: "https://mucchun.github.io/apex-rivals-gp/", demoLabel: "Play", text: "An arcade Grand Prix racer for the browser: twelve rival drivers, six circuits, slide-to-charge turbos, slipstream DRS, power-ups and a four-race championship against AI rivals.", tags: "Three.js, JavaScript, game" },
@@ -163,8 +131,13 @@ const WINDOWS = {
   art: {
     title: "Art and 3D",
     size: "small",
-    html: () => `<div class="pad">${folderGridHtml(ART.map((folder) => folder.id))}
-      <p class="note">More on <a href="https://serraalaca6.artstation.com" target="_blank" rel="noopener">ArtStation</a>.</p></div>`
+    html: () => `<div class="pad">
+      <h2>Art and 3D</h2>
+      <p>My environments, characters and props are on ArtStation.</p>
+      ${ART.length ? folderGridHtml(ART.map((folder) => folder.id)) : ""}
+      <div class="actions">
+        <a class="button is-primary" href="${ARTSTATION}" target="_blank" rel="noopener">Open ArtStation</a>
+      </div></div>`
   },
   code: {
     title: "Code projects",
@@ -240,8 +213,10 @@ const DESKTOP_ICONS = [
   { open: "experience", label: "Experience.txt", kind: "file", x: 29, y: 73 },
   { open: "education", label: "Education.txt", kind: "file", x: 62, y: 72 },
   ...ART.map((folder) => ({ open: folder.id, label: folder.name, kind: "folder", x: folder.x, y: folder.y })),
-  { open: "code", label: "Code projects", kind: "folder", x: 74, y: 58 },
-  { open: "terminal", label: "Terminal", kind: "terminal", x: 88, y: 70 }
+  { open: "artstation", href: ARTSTATION, label: "ArtStation", kind: "link", x: 77, y: 12 },
+  { open: "code", label: "Code projects", kind: "folder", x: 88, y: 27 },
+  { open: "terminal", label: "Terminal", kind: "terminal", x: 77, y: 42 },
+  { open: "github", href: GITHUB, label: "GitHub", kind: "link", x: 88, y: 57 }
 ];
 
 const DOCK = [
@@ -256,6 +231,7 @@ const DOCK = [
 function iconSvg(kind) {
   const icons = {
     folder: `<svg viewBox="0 0 64 54" aria-hidden="true"><path class="folder-back" d="M4 10a5 5 0 0 1 5-5h14.500a5 5 0 0 1 3.800 1.700L31 11h24a5 5 0 0 1 5 5v8H4z"/><path class="folder-front" d="M4 18h56v27a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/></svg>`,
+    link: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 4h26l12 12v40a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#fbfaf6" stroke="#b9c7cc" stroke-width="2"/><path d="M40 4v12h12" fill="#e6eef0" stroke="#b9c7cc" stroke-width="2"/><path d="M25 47l14-14M28 32h11v11" fill="none" stroke="#3f8fe0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
     file: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 4h26l12 12v40a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#fbfaf6" stroke="#b9c7cc" stroke-width="2"/><path d="M40 4v12h12" fill="#e6eef0" stroke="#b9c7cc" stroke-width="2"/><path d="M19 30h26M19 38h26M19 46h17" stroke="#9fb0b6" stroke-width="2.5" stroke-linecap="round"/></svg>`,
     pdf: `<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 4h26l12 12v40a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4z" fill="#fbfaf6" stroke="#b9c7cc" stroke-width="2"/><path d="M40 4v12h12" fill="#e6eef0" stroke="#b9c7cc" stroke-width="2"/><text x="31" y="44" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#c0563f">PDF</text></svg>`,
     terminal: `<svg viewBox="0 0 64 54" aria-hidden="true"><rect x="7" y="4" width="50" height="46" rx="9" fill="#262a38"/><path d="M19 20l9 7-9 7" fill="none" stroke="#9cc4f4" stroke-width="3.500" stroke-linecap="round" stroke-linejoin="round"/><path d="M33 35h12" stroke="#fff" stroke-width="3.500" stroke-linecap="round"/></svg>`,
@@ -273,9 +249,14 @@ const windowsRoot = document.querySelector("#windows");
 const stage = document.querySelector("#desktop");
 const dockRoot = document.querySelector("#dock");
 
-iconsRoot.innerHTML = DESKTOP_ICONS.map(
-  (icon) => `<button class="icon" type="button" data-open="${icon.open}" style="--x:${icon.x}%; --y:${icon.y}%">${iconSvg(icon.kind)}<span>${icon.label}</span></button>`
-).join("");
+// An icon with an href is a plain link that opens in a new tab; the rest open windows.
+iconsRoot.innerHTML = DESKTOP_ICONS.map((icon) => {
+  const inside = `${iconSvg(icon.kind)}<span>${icon.label}</span>`;
+  const place = `style="--x:${icon.x}%; --y:${icon.y}%"`;
+  return icon.href
+    ? `<a class="icon" href="${icon.href}" target="_blank" rel="noopener" ${place}>${inside}</a>`
+    : `<button class="icon" type="button" data-open="${icon.open}" ${place}>${inside}</button>`;
+}).join("");
 
 dockRoot.innerHTML = DOCK.map(
   (app, index) => `<button class="dock-app" type="button" data-open="${app.open}" aria-label="${app.label}" style="--c:${app.color}"><i aria-hidden="true">${index + 1}</i>
