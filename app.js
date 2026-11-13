@@ -13,7 +13,7 @@ const ARTSTATION = "https://serraalaca6.artstation.com";
 const GITHUB = "https://github.com/Mucchun";
 
 const CODE = [
-  { name: "Apex Rivals GP", url: "https://github.com/Mucchun/apex-rivals-gp", demo: "https://mucchun.github.io/apex-rivals-gp/", demoLabel: "Play", text: "An arcade Grand Prix racer for the browser: twelve rival drivers, six circuits, slide-to-charge turbos, slipstream DRS, power-ups and a four-race championship against AI rivals.", tags: "Three.js, JavaScript, game" },
+  { name: "Apex Rivals GP", url: "https://github.com/Mucchun/apex-rivals-gp", demo: "https://mucchun.github.io/apex-rivals-gp/", demoLabel: "Play", video: "assets/apex-rivals-opening.mp4", poster: "assets/apex-rivals-opening.jpg", text: "An arcade Grand Prix racer for the browser: twelve rival drivers, six circuits, slide-to-charge turbos, slipstream DRS, power-ups and a four-race championship against AI rivals.", tags: "Three.js, JavaScript, game" },
   { name: "Zebra Circus Blaster", url: "https://github.com/Mucchun/zebra-circus-game", demo: "https://zebra-circus-game.vercel.app", demoLabel: "Play it", text: "A first-person blaster browser game that doubles as a Zebra Technologies product showcase. Shoot barcode-balloon targets in a circus tent and pick up real Zebra devices as weapons.", tags: "Three.js, JavaScript, game" },
   { name: "Carnival", url: "https://github.com/Mucchun/Carnival", text: "An Unreal Engine supported C++ game development project with gameplay files, content structure, and implementation work in GitHub.", tags: "C++, Unreal Engine, gameplay code" },
   { name: "Cupid's 21", url: "https://github.com/Mucchun/cupids-table", text: "A browser card game: play 21 at Cupid's table against Eros.", tags: "HTML, JavaScript, game" },
@@ -146,6 +146,7 @@ const WINDOWS = {
       (project) => `
         <li>
           <h3>${project.name}</h3>
+          ${project.video ? `<video class="code-video" src="${project.video}" poster="${project.poster}" controls muted loop playsinline preload="none" aria-label="${project.name} opening video"></video>` : ""}
           <p>${project.text}</p>
           <p class="meta">${project.tags}${project.url ? "" : " (private repository)"}</p>
           ${project.url ? `<p class="links"><a href="${project.url}" target="_blank" rel="noopener">GitHub</a>${project.demo ? `<a href="${project.demo}" target="_blank" rel="noopener">${project.demoLabel}</a>` : ""}</p>` : ""}

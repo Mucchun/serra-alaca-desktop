@@ -933,6 +933,16 @@ a.icon {
   margin-bottom: 4px;
 }
 
+.code-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 8px 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #000;
+}
+
 .code-list .links {
   display: flex;
   flex-wrap: wrap;
